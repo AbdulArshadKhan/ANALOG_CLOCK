@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Analog Clock</title>
+	<style type="text/css">
+		#div1
+		{
+			position: relative;
+			height: 40vw;
+			width: 40vw;
+			background-image: url(clock.jpg);
+			margin:auto;
+			margin-top: 4vh;
+			background-repeat: no-repeat;
+			background-size: 100%;
+			border:5px solid black;
+			border-radius: 50%;
+		}
+		#hour,#minute,#second
+		{
+			position: absolute;
+			background-color: black;
+			transform-origin: bottom;
+		}
+		#hour
+		{
+			
+			top:26%;
+			left:49.4%;
+			height: 24%;
+			width: 1%;
+			background-color: red;
+			/*display: none;*/
+			transform: rotate(5deg);
+			
+		}
+		#minute
+		{
+			
+			
+			top:20%;
+			left:49.6%;
+			height: 30%;
+			width: 0.8%;
+			
+			transform: rotate(15deg);
+			transform-origin: bottom;
+			/*display: none*/
+		}
+		#second
+		{
+			
+			top:16%;
+			left:49.75%;
+			height: 34%;
+			width: 0.5%;
+			
+			/*display: none*/
+		}
+	</style>
+</head>
+<body>
+<div id="div1">
+	<div id="hour">
+
+	</div>
+	<div id="minute">
+		
+	</div>
+	<div id="second">
+		
+	</div>
+</div>
+
+<script type="text/javascript">
+	
+	setInterval(function()
+	{ 
+		date = new Date()
+		console.log(`Time is ${date}`)
+		
+		angleofhours=(date.getHours()*30+(date.getMinutes()*0.5)+(date.getSeconds()/120))%360
+		console.log(`Angle of hours hand is ${angleofhours}`)
+		angleofminutes=((date.getMinutes()*6)+(date.getSeconds()/10))%360
+		console.log(`Angle of minutes hand is ${angleofminutes}`)
+		angleofseconds=(date.getSeconds()*6)%360
+		console.log(`Angle of seconds hand is ${angleofseconds}`)
+
+		document.getElementById('hour').style.transform = `rotate(${angleofhours}deg)`
+
+		document.getElementById('minute').style.transform = `rotate(${angleofminutes}deg)`
+
+
+		document.getElementById('second').style.transform = `rotate(${angleofseconds}deg)`
+
+	}, 1000);
+
+
+</script>
+</body>
+</html>
